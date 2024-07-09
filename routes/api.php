@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::resource('dokter', DokterController::class);
 Route::get('dokter/{dokterId}/jadwal', [JadwalController::class, 'getByDokterId']);
+Route::resource('spesialis', SpesialisController::class);
 
 Route::get('/hi', function () {
     return response()->json(['message' => 'Hello, World!']);
