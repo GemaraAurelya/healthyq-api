@@ -27,6 +27,7 @@ Route::resource('spesialis', SpesialisController::class);
 Route::resource('hari', HariController::class);
 Route::resource('jam', JamController::class);
 Route::resource('janji-temu', JanjiTemuController::class);
+Route::put('janji-temu/{janjiTemuId}/status', [JanjiTemuController::class, 'ubahStatus']);
 
 Route::get('/hi', function () {
     return response()->json(['message' => 'Hello, World!']);
