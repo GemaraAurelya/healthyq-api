@@ -25,6 +25,7 @@ Route::resource('dokter', DokterController::class);
 Route::get('dokter/{dokterId}/jadwal', [JadwalController::class, 'getByDokterId']);
 Route::resource('spesialis', SpesialisController::class);
 Route::resource('hari', HariController::class);
+Route::resource('jam', JamController::class);
 
 Route::get('/hi', function () {
     return response()->json(['message' => 'Hello, World!']);
