@@ -45,7 +45,25 @@ class JanjiTemuController extends Controller
         ]);
 
         try {
-            $janjiTemu = JanjiTemu::query()->create($request->all());
+            $result = JanjiTemu::query()->create($request->all());
+            $result = JanjiTemu::query()->with('jadwal', 'jadwal.dokter')->find($result->id);
+            $janjiTemu = [
+                'id' => $result->id,
+                'nama_lengkap' => $result->nama_lengkap,
+                'no_hp' => $result->no_hp,
+                'alamat' => $result->alamat,
+                'tanggal_janji_temu' => $result->tanggal_janji_temu,
+                'status' => $result->status,
+                'created_at' => $result->created_at,
+                'updated_at' => $result->updated_at,
+                'jadwal_id' => $result->jadwal_id,
+                'dokter_id' => $result->jadwal->dokter->id,
+                'dokter_nama' => $result->jadwal->dokter->nama_lengkap,
+                'hari_id' => $result->jadwal->hari->id,
+                'hari_nama' => $result->jadwal->hari->nama,
+                'jam_id' => $result->jadwal->jam->id,
+                'jam_nama' => $result->jadwal->jam->nama,
+            ];
 
             return response()->json($janjiTemu, 201);
         } catch (\Throwable $th) {
